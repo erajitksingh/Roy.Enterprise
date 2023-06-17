@@ -74,7 +74,8 @@ namespace Roy.Enterprise.API.Migrations
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Photo = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
                     Username = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PasswordHash = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
+                    PasswordSalt = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
                     MobileNo = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     EmailId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -83,7 +84,8 @@ namespace Roy.Enterprise.API.Migrations
                     ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     LoginDateTime = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    LogoutDateTime = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    LogoutDateTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Status = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {

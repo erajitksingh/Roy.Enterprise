@@ -9,19 +9,13 @@ namespace Roy.Enterprise.API.Services
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
-
-        public UserService(IUserRepository userRepository)
-        {
-            _userRepository = userRepository;
-        }
-
         private readonly IJwtUtils _jwtUtils;
 
-        public UserService(IJwtUtils jwtUtils)
+        public UserService(IUserRepository userRepository, IJwtUtils jwtUtils)
         {
+            _userRepository = userRepository;
             _jwtUtils = jwtUtils;
         }
-
         public User Authenticate(AuthenticateRequest model)
         {
             if (string.IsNullOrEmpty(model.Username) || string.IsNullOrEmpty(model.Password))

@@ -12,7 +12,7 @@ using Roy.Enterprise.API.Helpers;
 namespace Roy.Enterprise.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230617043647_init")]
+    [Migration("20230617062026_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -159,11 +159,17 @@ namespace Roy.Enterprise.API.Migrations
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Password")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<byte[]>("PasswordHash")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<byte[]>("PasswordSalt")
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<byte[]>("Photo")
                         .HasColumnType("varbinary(max)");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Username")
                         .HasColumnType("nvarchar(max)");
@@ -206,7 +212,7 @@ namespace Roy.Enterprise.API.Migrations
                         .HasForeignKey("ItemsId");
 
                     b.HasOne("Roy.Enterprise.API.Entities.Order", null)
-                        .WithMany("OrderedItems")
+                        .WithMany("OrderItems")
                         .HasForeignKey("OrderId");
 
                     b.Navigation("Items");
@@ -214,7 +220,7 @@ namespace Roy.Enterprise.API.Migrations
 
             modelBuilder.Entity("Roy.Enterprise.API.Entities.Order", b =>
                 {
-                    b.Navigation("OrderedItems");
+                    b.Navigation("OrderItems");
                 });
 #pragma warning restore 612, 618
         }
