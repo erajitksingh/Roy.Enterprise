@@ -9,7 +9,6 @@ namespace Roy.Enterprise.API.Models
         public string LastName { get; set; }
         public byte[] Photo { get; set; }
         public string Username { get; set; }
-        [JsonIgnore]
         public string Password { get; set; }
         public string MobileNo { get; set; }
         public string EmailId { get; set; }
